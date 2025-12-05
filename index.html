@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini juego de fútbol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="game-wrapper">
+    <!-- MARCADOR DIGITAL ARRIBA -->
+    <div class="scoreboard">
+      <!-- Goles (izquierda) -->
+      <div class="score-block score-block-left">
+        <span class="score-label">GOLES</span>
+        <span id="score" class="score-value">0</span>
+      </div>
+
+      <!-- Centro: mensajes + tiempo + récord -->
+      <div class="score-center">
+        <span id="goal-message" class="goal-message"></span>
+        <span id="gameover-message" class="gameover-message"></span>
+        <span id="timer" class="timer-display">Tiempo: 60s</span>
+        <span id="record" class="record-label">Récord: 0</span>
+      </div>
+
+      <!-- Paradas (derecha) -->
+      <div class="score-block score-block-right">
+        <span class="score-label">PARADAS</span>
+        <span id="saves" class="score-value">0</span>
+      </div>
+    </div>
+
+    <!-- Barra de progreso de paradas -->
+    <div class="progress-container">
+      <div class="progress-bar-bg">
+        <div id="save-progress" class="progress-bar-fill"></div>
+      </div>
+      <span class="progress-text">Paradas del portero (máx 5)</span>
+    </div>
+
+    <!-- Campo envuelto para animación de impacto -->
+    <div id="canvas-wrapper" class="canvas-wrapper">
+      <canvas id="game" width="700" height="800"></canvas>
+    </div>
+
+    <!-- CONTROLES TÁCTILES -->
+    <div class="touch-controls">
+      <button id="btn-left" class="touch-btn small-round">←</button>
+      <button id="btn-shoot" class="touch-btn main-round">●</button>
+      <button id="btn-right" class="touch-btn small-round">→</button>
+    </div>
+
+    <!-- CONTROLES TEXTO -->
+    <div class="controls">
+      Teclado: ← → para mover | ESPACIO para chutar
+    </div>
+
+    <!-- Mensaje informativo -->
+    <div class="game-info">
+      Marca todos los goles que puedas en 60 segundos, a las 5 paradas del portero el juego termina.
+    </div>
+
+    <!-- Botón de reinicio -->
+    <button id="restart-btn" class="restart-btn" style="display:none;">
+      Reiniciar partida
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
