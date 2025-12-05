@@ -1,4 +1,4 @@
-/* Centrar todo en pantalla */
+/* CENTRADO GENERAL */
 body {
   margin: 0;
   background: #222;
@@ -10,7 +10,7 @@ body {
   color: white;
 }
 
-/* Contenedor del juego */
+/* CONTENEDOR DEL JUEGO */
 .game-wrapper {
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ body {
   box-sizing: border-box;
 }
 
-/* Marcador digital */
+/* MARCADOR DIGITAL */
 .scoreboard {
   background: #000;
   border: 3px solid #333;
@@ -35,7 +35,6 @@ body {
   box-shadow: 0 0 10px #000;
   width: 100%;
   box-sizing: border-box;
-  flex-wrap: nowrap; /* GOLES izq, PARADAS dcha siempre */
 }
 
 .score-block {
@@ -43,26 +42,6 @@ body {
   flex-direction: column;
   align-items: center;
   min-width: 90px;
-}
-
-.score-block-left {
-  text-align: left;
-}
-
-.score-block-right {
-  text-align: right;
-}
-
-/* Centro: mensajes + tiempo + récord */
-.score-center {
-  flex: 1;
-  min-width: 0;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  justify-content: center;
-  align-items: center;
 }
 
 .score-label {
@@ -77,6 +56,17 @@ body {
   color: #00ff00;
 }
 
+.score-center {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  justify-content: center;
+  align-items: center;
+}
+
 .timer-display {
   font-size: 13px;
   color: #66ccff;
@@ -87,22 +77,22 @@ body {
   color: #aaa;
 }
 
-/* Mensajes */
+/* MENSAJES */
 .goal-message {
-  font-size: 13px;
+  font-size: 22px;
   font-family: "Courier New", monospace;
   color: #ffdd00;
   text-transform: uppercase;
 }
 
 .gameover-message {
-  font-size: 14px;
+  font-size: 22px;
   font-family: "Courier New", monospace;
   color: #ff4444;
   text-transform: uppercase;
 }
 
-/* Parpadeo */
+/* PARPADEO */
 .blink {
   animation: blink 0.3s linear infinite;
 }
@@ -112,10 +102,9 @@ body {
   25%, 75% { opacity: 0; }
 }
 
-/* Barra de progreso */
+/* BARRA DE PROGRESO PARADAS */
 .progress-container {
   width: 100%;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -143,52 +132,31 @@ body {
   color: #ccc;
 }
 
-/* Campo + animaciones */
+/* CAMPO + ANIMACIONES */
 .canvas-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-.canvas-wrapper.flash-goal {
-  animation: flashGoal 0.2s ease;
-}
-
-.canvas-wrapper.flash-save {
-  animation: flashSave 0.2s ease;
-}
-
-@keyframes flashGoal {
-  0% { box-shadow: 0 0 0px #0f0; }
-  50% { box-shadow: 0 0 25px #0f0; }
-  100% { box-shadow: 0 0 0px #0f0; }
-}
-
-@keyframes flashSave {
-  0% { box-shadow: 0 0 0px #f00; }
-  50% { box-shadow: 0 0 25px #f00; }
-  100% { box-shadow: 0 0 0px #f00; }
-}
-
-/* ========= CANVAS RESPONSIVE ========= */
 canvas {
   background: #0b6623;
   border: 3px solid white;
   box-shadow: 0 0 10px black;
-
   max-width: 100%;
   height: auto;
-  max-height: 45vh;   /* vertical: como mucho 45% */
+  max-height: 45vh;
 }
 
-/* CONTROLES TÁCTILES: CÍRCULOS PEQUEÑOS */
+/* CONTROLES TÁCTILES OVALES */
 .touch-controls {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 18px;
   width: 100%;
   box-sizing: border-box;
-  margin-top: 2px;
+  margin-top: 10px;
 }
 
 .touch-btn {
@@ -199,104 +167,119 @@ canvas {
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
-/* izquierda / derecha */
 .small-round {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #333;
-  color: #fff;
-  font-size: 18px;
+  width: 90px;
+  height: 50px;
+  border-radius: 999px;
+  background: #00bfff;
+  color: #ffffff;
+  font-size: 28px;
 }
 
-/* botón central de chutar */
 .main-round {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
+  width: 140px;
+  height: 60px;
+  border-radius: 999px;
   background: #ffcc00;
   color: #000;
-  font-size: 26px;
+  font-size: 18px;
+  text-transform: uppercase;
 }
 
 .touch-btn:active {
   transform: scale(0.92);
 }
 
-/* Controles texto e info */
-.controls {
-  font-size: 12px;
-  color: #ddd;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 3px 8px;
-  border-radius: 6px;
-  text-align: center;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.game-info {
-  font-size: 12px;
-  color: #ddd;
+/* OVERLAY FINAL (HAS MARCADO X GOLES) */
+.end-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
   background: rgba(0, 0, 0, 0.6);
-  padding: 4px 8px;
-  border-radius: 6px;
-  text-align: center;
-  width: 100%;
-  box-sizing: border-box;
-  line-height: 1.4;
 }
 
-/* Botón de reinicio MÁS PEQUEÑO */
+.end-overlay.show {
+  display: flex;
+}
+
+.end-text {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 20px 30px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 0 15px #000;
+}
+
+#final-score-text {
+  display: block;
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
 .restart-btn {
   margin-top: 2px;
-  padding: 4px 12px;
-  border-radius: 16px;
+  padding: 8px 20px;
+  border-radius: 20px;
   border: none;
   background: #008cff;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   box-shadow: 0 0 6px #000;
 }
 
-.restart-btn:hover {
-  filter: brightness(1.1);
+/* PANTALLA INICIAL ENCIMA DEL JUEGO */
+.start-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); /* se ve el juego debajo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-/* Móviles estrechos */
+.start-box {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 24px 28px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 0 18px #000;
+  max-width: 320px;
+}
+
+.start-title {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+
+.start-text {
+  margin: 0 0 18px;
+  font-size: 15px;
+}
+
+.start-btn {
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: none;
+  background: #00bfff;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 0 8px #000;
+}
+
+/* RESPONSIVE SUAVE */
 @media (max-width: 480px) {
   .score-value { font-size: 20px; }
   .score-label { font-size: 11px; }
   .goal-message,
-  .gameover-message { font-size: 11px; }
-  .game-info { font-size: 11px; padding: 4px 6px; }
-}
-
-/* Pantallas bajas (horizontal móvil) */
-@media (max-height: 600px) {
-  .game-wrapper {
-    gap: 5px;
-    padding: 4px;
-  }
-
-  .scoreboard {
-    padding: 4px 6px;
-  }
-
-  canvas {
-    max-height: 26vh;   /* aún más pequeño en horizontal para que quepa todo */
-  }
-
-  .controls,
-  .game-info {
-    font-size: 11px;
-  }
-
-  .restart-btn {
-    font-size: 11px;
-    padding: 3px 10px;
-  }
+  .gameover-message { font-size: 18px; }
 }
