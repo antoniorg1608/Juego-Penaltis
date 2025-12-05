@@ -8,16 +8,16 @@
 </head>
 
 <body>
+  <!-- CONTENEDOR DEL JUEGO (SIEMPRE DEBAJO) -->
   <div class="game-wrapper">
-    <!-- MARCADOR DIGITAL ARRIBA -->
+
+    <!-- MARCADOR -->
     <div class="scoreboard">
-      <!-- Goles (izquierda) -->
       <div class="score-block score-block-left">
         <span class="score-label">GOLES</span>
         <span id="score" class="score-value">0</span>
       </div>
 
-      <!-- Centro: mensajes + tiempo + récord -->
       <div class="score-center">
         <span id="goal-message" class="goal-message"></span>
         <span id="gameover-message" class="gameover-message"></span>
@@ -25,14 +25,13 @@
         <span id="record" class="record-label">Récord: 0</span>
       </div>
 
-      <!-- Paradas (derecha) -->
       <div class="score-block score-block-right">
         <span class="score-label">PARADAS</span>
         <span id="saves" class="score-value">0</span>
       </div>
     </div>
 
-    <!-- Barra de progreso de paradas -->
+    <!-- BARRA DE PROGRESO PARADAS -->
     <div class="progress-container">
       <div class="progress-bar-bg">
         <div id="save-progress" class="progress-bar-fill"></div>
@@ -40,32 +39,34 @@
       <span class="progress-text">Paradas del portero (máx 5)</span>
     </div>
 
-    <!-- Campo envuelto para animación de impacto -->
+    <!-- CAMPO + OVERLAY FINAL -->
     <div id="canvas-wrapper" class="canvas-wrapper">
       <canvas id="game" width="700" height="800"></canvas>
+
+      <!-- OVERLAY DE FIN DE PARTIDA -->
+      <div id="end-overlay" class="end-overlay">
+        <div class="end-text">
+          <span id="final-score-text"></span>
+          <button id="restart-btn" class="restart-btn">VOLVER A JUGAR</button>
+        </div>
+      </div>
     </div>
 
     <!-- CONTROLES TÁCTILES -->
     <div class="touch-controls">
       <button id="btn-left" class="touch-btn small-round">←</button>
-      <button id="btn-shoot" class="touch-btn main-round">●</button>
+      <button id="btn-shoot" class="touch-btn main-round">CHUTAR</button>
       <button id="btn-right" class="touch-btn small-round">→</button>
     </div>
+  </div>
 
-    <!-- CONTROLES TEXTO -->
-    <div class="controls">
-      Teclado: ← → para mover | ESPACIO para chutar
+  <!-- PANTALLA INICIAL ENCIMA DEL JUEGO -->
+  <div id="start-overlay" class="start-overlay">
+    <div class="start-box">
+      <h1 class="start-title">Mini juego de fútbol</h1>
+      <p class="start-text">Marca todos los goles que puedas en 1 minuto.</p>
+      <button id="start-btn" class="start-btn">EMPEZAR A JUGAR</button>
     </div>
-
-    <!-- Mensaje informativo -->
-    <div class="game-info">
-      Marca todos los goles que puedas en 60 segundos, a las 5 paradas del portero el juego termina.
-    </div>
-
-    <!-- Botón de reinicio -->
-    <button id="restart-btn" class="restart-btn" style="display:none;">
-      Reiniciar partida
-    </button>
   </div>
 
   <script src="script.js"></script>
